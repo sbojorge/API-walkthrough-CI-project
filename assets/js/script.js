@@ -32,10 +32,6 @@ document.getElementById("submit").addEventListener("click", e => postForm(e));
 async function postForm(e) {
     const form = processOptions(new FormData(document.getElementById("checksform")));
 
-    for (let entry of form.entries()){
-        console.log(entry);
-    }
-
     const response = await fetch(API_URL, {
                         method: "POST",
                         headers: {
@@ -47,7 +43,7 @@ async function postForm(e) {
     const data = await response.json();
 
     if(response.ok) {
-           console.logcl(data);
+           displayErrors(data);
     } else {
             throw new Error(data.error);
         };
